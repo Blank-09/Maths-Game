@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Maths Quiz</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <script src="../Project Video v2.1/Plugins/jquery(3.5.1).min.js"></script>
+    </head>
+    <body>
+        <main id="container">
+    <!--       <iframe src="https://drive.google.com/file/d/1ttER7dEfLKA5RX4-o2-jdmRW6sxCYXSR/preview" width="300" height="480"></iframe> -->
+          <div class="start_container">
+            <div class="start_btn"><button>Start Quiz</button></div>
+            <div class="leaderboard"><button>Leaderboard</button></div>     
+          </div>
+          
+            <div class="name_box">
+                <input type="text" class="name" placeholder="Enter Your Name">
+                <input type="button" class="name_btn" value="Okay! Let's Start">
+            </div>
+          
+            <div class="instructions">
+                    <div class="info_title">
+                        <span>Some Rules of this Quiz</span>
+                    </div>
+                    <div class="info_list">
+                        <div class="info">1. You will have only <span>15 seconds</span> per each question.</div>
+                        <div class="info">2. Once you select your answer, you can't reselect.</div>
+                        <div class="info">3. You can't select any option once time goes off.</div>
+                        <div class="info">4. You can't exit from the Quiz while you're playing.</div>
+                        <div class="info">5. Once you've finished Click on "Send Score" to change the highscore.</div>
+                    </div>
+                    <div class="buttons">
+                        <button class="quit">Exit Quiz</button>
+                        <button class="restart">Continue</button>
+                    </div>
+            </div>
+            <div class="math-quiz">
+                <header>
+                    <div class="title">Maths Quiz</div>
+                    <div class="timer">
+                        <div class="time_text">Time Left</div>
+                        <div class="timer_sec">15</div>
+                    </div>
+                    <div class="time_line"></div>
+                </header>
+                <section>
+                    <div><span id="questions"><p id="num1"></p> X <p id="num2"></p></span></div>
+                    <div class="option_list">
+                        <div class="option" id="option1"></div>
+                        <div class="option"id="option2"></div>
+                        <div class="option"id="option3"></div>
+                        <div class="option"id="option4"></div>
+                    </div>
+                </section>
+                <footer>
+                    <div class="points">
+                        <div class="point_text">Points</div>
+                        <div class="point_no">0</div>
+                    </div>
+                    <button class="next_btn">Show Results</button>
+                </footer>
+            </div>
+            <div class="result_box">
+                <div>
+                    Highest score: <p>2053 Points</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="complete_text">Congrats! You've completed The Quiz</div>
+                <div class="score_text"></div>
+                <div class="buttons">
+                    <button class="restart">Send Score</button>
+                    <button class="quit">Replay Quiz</button>
+                </div>
+            </div>
+        </main>
+        <a id="leaderboard_link" href="https://drive.google.com/file/d/1m0WULlae5pYoBCkdNt1zS-QC65aSoot_/view?usp=sharing" target="_blank"></a>
+        <a id="link" target="_blank"></a>
+    <script src="script.js"></script>
+</body>
+</html>
