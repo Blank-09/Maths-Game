@@ -1,0 +1,12 @@
+@mixin shadow {
+  box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0px 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+@mixin center {
+  position: absolute;
+  transform: translate(-50%, -50%);
+
+  top: 50%;
+  left: 50%;
+}

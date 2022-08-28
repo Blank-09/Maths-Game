@@ -1,0 +1,44 @@
+.username-input-container {
+  padding: 35px 30px;
+  max-width: 500px;
+  width: 90%;
+
+  opacity: 0;
+  background: $theme-color;
+
+  border-radius: 5px;
+  pointer-events: none;
+  // transform: translate(-50%, -50%) scale(0.9);
+  transform: scale(0.9);
+
+  input, button {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 20px;
+  
+    border: 1px solid #303030;
+    border-radius: 4px;
+  }
+}
+
+.input-text input {
+  margin-bottom: 10px;
+
+  &:focus {
+    outline: auto;
+  }
+}
+
+.input-button button {
+  color: #fff;
+  background: black;
+  cursor: pointer;
+
+  &:hover {
+    background: #101010;
+  }
+
+  &:active {
+    background: black;
+  }
+}

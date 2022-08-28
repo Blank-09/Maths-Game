@@ -1,0 +1,125 @@
+@media (max-width: 550px) {
+  .username-input-container {
+    padding: 1.5rem;
+
+    input,
+    button {
+      padding: 8px 12px;
+      font-size: 1rem;
+    }
+  }
+
+  .instructions-container {
+    .title,
+    .buttons {
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+    }
+
+    ol.list {
+      padding: 0.7rem;
+      padding-left: 2rem;
+      font-size: 0.75rem;
+
+      li {
+        margin: 3px;
+      }
+    }
+
+    .buttons {
+      padding: 0.5rem 1rem;
+    }
+  }
+
+  .result-box {
+    padding: 0.6rem 1rem;
+
+    .complete-text {
+      font-size: 1rem;
+    }
+    .score-text {
+      font-size: 0.7rem;
+    }
+    .buttons-container {
+      margin-top: 1.5rem;
+    }
+  }
+
+  .quiz-box {
+    header {
+      padding: 0.7rem 1rem;
+      .title {
+        font-size: 1rem;
+      }
+    }
+
+    .pill {
+      font-size: 0.7rem;
+      min-width: 100px;
+      .pill-badge {
+        font-size: 0.7rem;
+      }
+    }
+
+    main {
+      padding: 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    .option-list {
+      .option {
+        width: 70px;
+        padding: 0.5rem;
+      }
+    }
+  }
+
+  .btn {
+    padding: 0.2rem 0.5rem;
+    margin: 0 3px;
+
+    font-size: 0.7rem;
+    border-radius: 3px;
+  }
+
+  .pill {
+    font-size: 0.6rem;
+    padding: 0.25rem;
+
+    .pill-badge {
+      font-size: 0.7rem;
+      padding: 1px 0.3rem;
+    }
+  }
+}
+
+@media (max-width: 350px) {
+  .result-box {
+    padding: 0.5rem 0.7rem;
+
+    .complete-text {
+      font-size: 0.8rem;
+    }
+    .score-text {
+      font-size: 0.6rem;
+    }
+    .buttons-container {
+      margin-top: 1.2rem;
+    }
+  }
+
+  .btn {
+    font-size: 0.5rem;
+  }
+
+  .pill {
+    font-size: 0.5rem;
+    padding: 0.15rem;
+    padding-left: 0.25rem;
+
+    .pill-badge {
+      font-size: 0.6rem;
+      padding: 2px 0.3rem;
+    }
+  }
+}

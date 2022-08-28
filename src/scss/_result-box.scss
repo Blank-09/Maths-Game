@@ -1,0 +1,39 @@
+.result-box {
+  padding: 0.7rem 1.5rem;
+
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+
+  background-color: #fff;
+  border-radius: 5px;
+
+  .icon img {
+    width: 27%;
+    margin-top: 1rem;
+    -webkit-user-drag: none;
+  }
+
+  .complete-text {
+    font-size: 1.5rem;
+    font-weight: bolder;
+  }
+
+  .score-text {
+    font-size: 1.2rem;
+  }
+
+  .buttons-container {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+
+    :first-child {
+      margin-right: auto;
+    }
+
+    :last-child {
+      margin-right: 0;
+    }
+  }
+}
