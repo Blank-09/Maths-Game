@@ -3,3 +3,9 @@
  */
 
 import "./scss/main.scss";
+
+/**
+ * Importing JavaScript
+ */
+
+

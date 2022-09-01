@@ -4,7 +4,7 @@ export default function rankListTemplate(
   score: number
 ) {
   return `
-  <div class="list">
+  <div class="list-item">
     <div class="rank">
       <svg width="25" height="25">
         <use xlink:href="#shield"></use>

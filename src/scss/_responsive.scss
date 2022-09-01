@@ -1,35 +1,21 @@
 @media (max-width: 550px) {
-  .username-input-container {
-    padding: 1.5rem;
+  // .instructions-container {
+    // .title,
+    // .buttons {
+    //   padding: 0.7rem 1.5rem;
+    //   font-size: 1rem;
+    // }
 
-    input,
-    button {
-      padding: 8px 12px;
-      font-size: 1rem;
-    }
-  }
+    // ol.list {
+    //   padding: 0.7rem;
+    //   padding-left: 2rem;
+    //   font-size: 0.75rem;
 
-  .instructions-container {
-    .title,
-    .buttons {
-      padding: 0.7rem 1.5rem;
-      font-size: 1rem;
-    }
-
-    ol.list {
-      padding: 0.7rem;
-      padding-left: 2rem;
-      font-size: 0.75rem;
-
-      li {
-        margin: 3px;
-      }
-    }
-
-    .buttons {
-      padding: 0.5rem 1rem;
-    }
-  }
+    //   li {
+    //     margin: 3px;
+    //   }
+    // }
+  // }
 
   .result-box {
     padding: 0.6rem 1rem;
@@ -48,6 +34,7 @@
   .quiz-box {
     header {
       padding: 0.7rem 1rem;
+
       .title {
         font-size: 1rem;
       }
@@ -55,7 +42,9 @@
 
     .pill {
       font-size: 0.7rem;
-      min-width: 100px;
+      min-width: 90px;
+      padding: 0.2rem 0.2rem 0.2rem 0.4rem;
+  
       .pill-badge {
         font-size: 0.7rem;
       }
@@ -75,7 +64,7 @@
   }
 
   .btn {
-    padding: 0.2rem 0.5rem;
+    padding: 0.4rem 0.6rem;
     margin: 0 3px;
 
     font-size: 0.7rem;
@@ -84,7 +73,7 @@
 
   .pill {
     font-size: 0.6rem;
-    padding: 0.25rem;
+    padding: 0.2rem 0.2rem 0.2rem 0.4rem;
 
     .pill-badge {
       font-size: 0.7rem;

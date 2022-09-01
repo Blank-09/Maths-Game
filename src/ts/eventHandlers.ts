@@ -1,13 +1,14 @@
-import { register } from "./api";
+import { IUserData } from "@/interface/ILocalStorage";
+import { getLocalStorageData, register } from "./api";
 import {
   createQuestion,
   resetQuiz,
   setNoOfCompletedQuestionsTo,
   showRankList,
   showResultBox,
+  showUserDetails,
   startTimerFrom,
   timerValue,
-  username,
   validateName,
 } from "./functions";
 import {
@@ -16,39 +17,155 @@ import {
   info_box_div,
   leaderboardBtn,
   leaderboard_div,
-  nameInputBtn,
-  nameInputText,
-  name_box_div,
+  registerNameInputBtn,
+  register_box_div,
   quitBtn,
   quiz_box_div,
+  rankListExitBtn,
   replayBtn,
   result_box_div,
   showResultsBtn,
   startBtn,
+  start_div,
+  userDetailsBtn,
+  userDetailsExitBtn,
+  registerDivExitBtn,
+  user_detail_div,
+  updateNameBtn,
+  update_name_div,
+  usernameInputBtn,
+  usernameExitBtn,
+  registerNameInputBox,
+  usernameInputBox,
+  registerLoadingDiv,
+  usernameLoadingDiv,
 } from "./htmlElements";
 
+// Start Page
+
 startBtn.onclick = () => {
-  const userDataStr = localStorage.getItem("app-user-details");
+  start_div.classList.remove("active");
 
-  let userDataObj;
-  if (userDataStr !== null) userDataObj = JSON.parse(userDataStr);
+  const dataObj = JSON.parse(localStorage.getItem("app-user-details")!);
 
-  if (userDataObj && userDataObj.name) info_box_div.classList.add("active");
-  else name_box_div.classList.add("active");
+  if (dataObj && dataObj.name) info_box_div.classList.add("active");
+  else register_box_div.classList.add("active");
 };
 
 leaderboardBtn.onclick = () => {
-  document.querySelector(".active")?.classList.remove("active");
+  start_div.classList.remove("active");
   leaderboard_div.classList.add("active");
-  showRankList();
+
+  if (navigator.onLine) showRankList();
+  else leaderboard_div.querySelector(".loading")?.classList.add("offline");
 };
 
-quitBtn.onclick = () => info_box_div.classList.remove("active");
-showResultsBtn.onclick = showResultBox;
+userDetailsBtn.onclick = () => {
+  const dataObj: IUserData = JSON.parse(
+    localStorage.getItem("app-user-details")!
+  );
 
-nameInputBtn.onclick = () => {
-  var isValid = validateName();
-  if (isValid) register(nameInputText.value);
+  if (!(dataObj && dataObj.name))
+    return register_box_div.classList.add("active");
+
+  start_div.classList.remove("active");
+  user_detail_div.classList.add("active");
+
+  showUserDetails(dataObj);
+};
+
+// Leaderboard Page
+
+rankListExitBtn.onclick = () => {
+  leaderboard_div.classList.remove("active");
+  start_div.classList.add("active");
+};
+
+updateNameBtn.onclick = () => {
+  update_name_div.classList.add("active");
+  user_detail_div.classList.remove("active");
+
+  const json = getLocalStorageData();
+  if (json && json.name) showUserDetails(json);
+};
+
+// User Settings Page
+
+userDetailsExitBtn.onclick = () => {
+  user_detail_div.classList.remove("active");
+  start_div.classList.add("active");
+};
+
+// Register Page
+
+registerDivExitBtn.onclick = () => {
+  register_box_div.classList.remove("active");
+  start_div.classList.add("active");
+};
+
+registerNameInputBtn.onclick = () => {
+  var isValid = validateName(registerNameInputBox);
+
+  if (!isValid) {
+    registerNameInputBox.placeholder = "Invalid Name";
+    registerNameInputBox.value = "";
+    return;
+  }
+
+  registerLoadingDiv.classList.add("active");
+
+  var res = register(registerNameInputBox.value);
+  if (!res) return console.log("You've already Registered");
+
+  res
+    .then(() => {
+      register_box_div.classList.remove("active");
+      info_box_div.classList.add("active");
+      registerLoadingDiv.classList.remove("active");
+    })
+    .catch((err) => {
+      registerLoadingDiv.classList.add("offline");
+      console.error(err);
+    });
+};
+
+// Update Name Page
+usernameExitBtn.onclick = () => {
+  update_name_div.classList.remove("active");
+  user_detail_div.classList.add("active");
+};
+
+usernameInputBtn.onclick = () => {
+  var isValid = validateName(usernameInputBox);
+  
+  if (!isValid) {
+    usernameInputBox.placeholder = "Invalid Name";
+    usernameInputBox.value = "";
+    return;
+  }
+
+  usernameLoadingDiv.classList.add("active");
+
+  var res = register(usernameInputBox.value);
+  if (!res) return console.log("You've already Registered");
+
+  res
+    .then(() => {
+      update_name_div.classList.remove("active");
+      user_detail_div.classList.add("active");
+      usernameLoadingDiv.classList.remove("active");
+    })
+    .catch((err) => {
+      usernameLoadingDiv.classList.add("offline");
+      console.error(err);
+    });
+};
+
+// Instructions Page
+
+quitBtn.onclick = () => {
+  info_box_div.classList.remove("active");
+  start_div.classList.add("active");
 };
 
 continueBtn.onclick = () => {
@@ -60,6 +177,12 @@ continueBtn.onclick = () => {
   startTimerFrom(timerValue);
 };
 
+// Quiz Page
+
+showResultsBtn.onclick = showResultBox;
+
+// Result Page
+
 replayBtn.onclick = () => {
   result_box_div.classList.remove("active");
   info_box_div.classList.add("active");
@@ -68,5 +191,16 @@ replayBtn.onclick = () => {
 
 exitQuizBtn.onclick = () => {
   result_box_div.classList.remove("active");
+  start_div.classList.add("active");
   resetQuiz();
+};
+
+// Checking for network Status
+
+window.ononline = () => {
+  console.log("Online");
+};
+
+window.onoffline = () => {
+  console.log("Offline");
 };

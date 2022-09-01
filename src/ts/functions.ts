@@ -1,21 +1,27 @@
+import { IUserData } from "@/interface/ILocalStorage";
 import rankListTemplate from "../template/rankListTemplate";
 import { getLeaderboardScores, updateScore } from "./api";
 import {
+  averageScoreText,
   completeText,
+  highscoreText,
+  highScoreText,
   info_box_div,
-  nameInputText,
-  name_box_div,
+  leaderboardLoadingDiv,
+  noOfTimesPlayedText,
   operands,
   options,
   pointsNoText,
   quiz_box_div,
   rankListDiv,
+  rankText,
   result_box_div,
   scoreText,
   showResultsBtn,
   timeLeftNoText,
   timeLeftText,
   timeLine,
+  usernameText,
 } from "./htmlElements";
 
 let que_count = 0;
@@ -82,6 +88,8 @@ export async function showRankList() {
   const rankList = await getLeaderboardScores();
   rankListDiv.innerHTML = "";
 
+  leaderboardLoadingDiv.style.display = "none";
+
   rankList.forEach(({ name, score }, i) => {
     rankListDiv.innerHTML += rankListTemplate(i + 1, name, score);
   });
@@ -94,6 +102,21 @@ export function showResultBox() {
 
   scoreText.innerText = `You got ${userScore} Points`;
   changeResultText();
+
+  var dataStr = localStorage.getItem("app-user-details");
+  if (!dataStr) return;
+
+  var data: IUserData = JSON.parse(dataStr);
+  highScoreText.innerText = String(data.highscore);
+}
+
+export function showUserDetails(obj: IUserData) {
+  usernameText.innerText = obj.name;
+
+  rankText.innerText = String(obj.rank ?? "--");
+  highscoreText.innerText = String(obj.highscore);
+  averageScoreText.innerText = String(obj.averageScore);
+  noOfTimesPlayedText.innerText = String(obj.noOfTimesPlayed);
 }
 
 export function startTimerFrom(time: number) {
@@ -113,16 +136,9 @@ export function startTimerFrom(time: number) {
   }, 1000);
 }
 
-export function validateName(): boolean {
-  const inputText = nameInputText.value.trim();
-  if (inputText == "") {
-    nameInputText.value = "";
-    return false;
-  }
-
-  name_box_div.classList.remove("active");
-  info_box_div.classList.add("active");
-  return true;
+export function validateName(inputTextBox: HTMLInputElement): boolean {
+  const inputText = inputTextBox.value.trim();
+  return inputText != "";
 }
 
 // local functions

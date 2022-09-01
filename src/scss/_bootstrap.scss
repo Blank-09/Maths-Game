@@ -1,0 +1,20 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+@import "../../node_modules/bootstrap/scss/mixins";
+// @import "../../node_modules/bootstrap/scss/maps";
+// @import "../../node_modules/bootstrap/scss/root";
+
+// @import "../../node_modules/bootstrap/scss/utilities";
+// @import "../../node_modules/bootstrap/scss/reboot";
+// @import "../../node_modules/bootstrap/scss/type";
+// @import "../../node_modules/bootstrap/scss/helpers";
+
+
+@import "../../node_modules/bootstrap/scss/spinners";
+
+// Tooltip
+$tooltip-color: $black;
+$tooltip-bg: $white;
+
+@import "../../node_modules/bootstrap/scss/tooltip";

@@ -5,12 +5,16 @@ import { userScore } from "./functions";
 const apiURL =
   "https://script.google.com/macros/s/AKfycbzdh-sv8lYNXqo8kvSxufU_hiz_i-IIUt8Dr6KojNYFsD5ZCiNYV7ldgbuGLG2PNNPphg/exec";
 
-export async function register(username: string) {
-  if (localStorage.getItem("app-user-details") !== null) return;
+export const localStorageKey = "app-user-details";
 
+export function register(username: string) {
+  if (localStorage.getItem(localStorageKey) !== null) return;
+
+  const location = window.location.hostname;
   const payload = {
     name: username,
     nuid: 1,
+    ref: location,
   };
 
   return new Promise((resolve, reject) => {
@@ -18,15 +22,21 @@ export async function register(username: string) {
       method: "POST",
       body: JSON.stringify(payload),
     })
-      .then((res) => res.text())
+      .then((res) => {
+        if (res.status == 200) return res.text();
+        throw "Failed to Post";
+      })
       .then((res) => {
         const json = JSON.parse(res);
         if (json.data.id == null) return reject("Failed");
 
-        localStorage.setItem(
-          "app-user-details",
-          JSON.stringify({ id: json.data.id, name: username, highscore: 0 })
-        );
+        setLocalStorageData({
+          id: json.data.id,
+          name: username,
+          highscore: 0,
+          averageScore: 0,
+          noOfTimesPlayed: 0,
+        })
 
         resolve(json);
       })
@@ -35,21 +45,31 @@ export async function register(username: string) {
 }
 
 export async function updateScore() {
-  var userDataStr = localStorage.getItem("app-user-details");
-  var data: IUserData;
+  const data = getLocalStorageData();
+  if (data == null) return;
 
-  if (!userDataStr) return;
-  data = JSON.parse(userDataStr);
+  const { averageScore, highscore } = data;
 
-  if (data.highscore > userScore) return;
+  data.averageScore =
+    averageScore != 0 //
+      ? Math.round((averageScore + userScore) / 2)
+      : userScore;
+
+  if (data.averageScore != 0)
+    data.noOfTimesPlayed += 1;
+
+  if (+highscore > +userScore) return setLocalStorageData(data);
   data.highscore = userScore;
 
-  localStorage.setItem("app-user-details", JSON.stringify(data));
+  setLocalStorageData(data);
+
+  var location = window.location.hostname;
 
   const payload = {
     id: data.id,
     name: data.name,
     score: userScore,
+    ref: location,
   };
 
   return await new Promise((resolve, reject) => {
@@ -67,4 +87,12 @@ export async function getLeaderboardScores() {
   const request = await fetch(apiURL);
   const data: IAPIData = await request.json();
   return data.data;
+}
+
+function setLocalStorageData(data: IUserData) {
+  localStorage.setItem(localStorageKey, JSON.stringify(data));
+}
+
+export function getLocalStorageData(): IUserData | null {
+  return JSON.parse(localStorage.getItem(localStorageKey)!);
 }

@@ -1,57 +1,19 @@
 .instructions-container {
-  width: 90%;
-  max-width: 540px;
-
-  background-color: #fff;
-  border-radius: 5px;
-  opacity: 0;
-
-  pointer-events: none;
-  transform: scale(0.9);
-
-  .title {
-    width: 100%;
-    padding: 15px 30px;
-    border-bottom: 1px solid lightgray;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    font-size: 20px;
-    font-weight: 600;
-
-    a {
-      color: $theme-bg-color
-    }
-  }
-
-  .tips-n-tricks {
-    width: 20px;
-    cursor: pointer;
-    display: grid;
-    place-items: center;
-  }
-
   ol.list {
-    padding: 15px 50px;
+    padding-left: 1.5rem;
     font-size: 17px;
 
-    li { 
+    li {
       margin: 5px 0;
     }
 
     span {
-      font-weight: 600;
+      font-weight: bold;
       color: $theme-bg-color;
     }
   }
 
-  .buttons {
-    padding: 10px 35px;
-    border-top: 1px solid lightgray;
-
-    display: flex;
-    justify-content: flex-end;
+  .btn {
+    padding: .4rem 1rem;
   }
 }

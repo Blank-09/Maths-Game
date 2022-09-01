@@ -1,0 +1,123 @@
+body > section {
+  position: absolute;
+  transition: all 0.3s ease;
+
+  opacity: 0;
+  pointer-events: none;
+
+  &:not(.start-container) {
+    transform: scale(0.9);
+  }
+
+  @include shadow();
+
+  &.active {
+    z-index: 5;
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+  }
+}
+
+.d-none {
+  display: none !important;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  margin: 0 5px;
+
+  background-color: $theme-bg-color;
+  color: $theme-color;
+
+  font-size: 1rem;
+  font-weight: 500;
+
+  outline: none;
+  border: none;
+  border-radius: 5px;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $theme-bg-color-variant;
+  }
+}
+
+.btn-primary-outlined {
+  background-color: $theme-color;
+  color: $theme-bg-color;
+
+  border: 1px solid $theme-bg-color;
+
+  &:hover {
+    color: $theme-color;
+    background-color: $theme-bg-color;
+  }
+}
+
+.pill {
+  padding: 0.35rem;
+
+  background: #cce5ff;
+  border: 1px solid #a8d1fc;
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+
+  font-weight: 400px;
+  font-size: 0.9rem;
+  user-select: none;
+
+  .pill-badge {
+    padding: 1px 0.5rem;
+    margin-left: 5px;
+    color: #fff;
+    background-color: #343a40;
+
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+
+    border: 1px solid #a8d1fc;
+    border-radius: 5px;
+  }
+}
+
+.pointer {
+  cursor: pointer!important;
+}
+
+.place-items-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+// Loading UI
+
+.loading {
+  text-align: center;
+  padding: 1.5rem 0;
+
+  &.offline {
+    .online-status-text {
+      display: none;
+    }
+
+    .offline-status-text {
+      display: block;
+    }
+  }
+
+  .offline-status-text {
+    display: none;
+    font-size: larger;
+    padding-bottom: 1rem;
+  }
+}

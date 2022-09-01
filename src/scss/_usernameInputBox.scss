@@ -1,44 +1,46 @@
-.username-input-container {
-  padding: 35px 30px;
-  max-width: 500px;
-  width: 90%;
+.update-container, .register-container {
+  nav { border-bottom: 0px }
 
-  opacity: 0;
-  background: $theme-color;
+  main {
+    padding: 1.5rem;
+    padding-top: 0;
 
-  border-radius: 5px;
-  pointer-events: none;
-  // transform: translate(-50%, -50%) scale(0.9);
-  transform: scale(0.9);
+    input,
+    button {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
 
-  input, button {
-    width: 100%;
-    padding: 12px 20px;
-    font-size: 20px;
-  
-    border: 1px solid #303030;
-    border-radius: 4px;
+      border: 1px solid #333;
+      border-radius: 4px;
+    }
+  }
+
+  .loading {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+
+  .loading.active ~ .input-container {
+    display: none;
   }
 }
+
 
 .input-text input {
   margin-bottom: 10px;
 
-  &:focus {
-    outline: auto;
-  }
+  &:focus { outline: 1px solid #000 }
 }
 
 .input-button button {
   color: #fff;
-  background: black;
+  background: #000;
   cursor: pointer;
 
-  &:hover {
-    background: #101010;
-  }
-
-  &:active {
-    background: black;
-  }
+  &:hover  { background: #111 }
+  &:active { background: #000 }
 }
