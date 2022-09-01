@@ -137,7 +137,7 @@ usernameExitBtn.onclick = () => {
 
 usernameInputBtn.onclick = () => {
   var isValid = validateName(usernameInputBox);
-  
+
   if (!isValid) {
     usernameInputBox.placeholder = "Invalid Name";
     usernameInputBox.value = "";

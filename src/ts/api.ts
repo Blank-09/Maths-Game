@@ -2,15 +2,16 @@ import { IAPIData } from "@/interface/IapiData";
 import { IUserData } from "@/interface/ILocalStorage";
 import { userScore } from "./functions";
 
+const location = window.location.hostname;
 const apiURL =
-  "https://script.google.com/macros/s/AKfycbzdh-sv8lYNXqo8kvSxufU_hiz_i-IIUt8Dr6KojNYFsD5ZCiNYV7ldgbuGLG2PNNPphg/exec";
+  "https://script.google.com/macros/s/AKfycbz8vXR3g9KmyXHVlxFcLfcJn6yEYdX96PKEyPf8vFRuhgCfqkhThgegD48Az1fpMOdncg/exec";
 
 export const localStorageKey = "app-user-details";
+
 
 export function register(username: string) {
   if (localStorage.getItem(localStorageKey) !== null) return;
 
-  const location = window.location.hostname;
   const payload = {
     name: username,
     nuid: 1,
@@ -44,7 +45,9 @@ export function register(username: string) {
   });
 }
 
-export async function updateScore() {
+export async function updateScore() {  
+  if (userScore == 0) return;
+
   const data = getLocalStorageData();
   if (data == null) return;
 
@@ -63,8 +66,6 @@ export async function updateScore() {
 
   setLocalStorageData(data);
 
-  var location = window.location.hostname;
-
   const payload = {
     id: data.id,
     name: data.name,
@@ -78,7 +79,14 @@ export async function updateScore() {
       body: JSON.stringify(payload),
     })
       .then((res) => res.json())
-      .then(resolve)
+      .then((data) => {
+        var userData = getLocalStorageData();
+        if (data.rank && userData) {
+          userData.rank = data.rank;
+          setLocalStorageData(userData);
+        }
+        resolve(data);
+      })
       .catch(reject);
   });
 }
