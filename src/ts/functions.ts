@@ -1,6 +1,6 @@
 import { IUserData } from "@/interface/ILocalStorage";
 import rankListTemplate from "../template/rankListTemplate";
-import { getLeaderboardScores, updateScore } from "./api";
+import { getLeaderboardScores, getLocalStorageData, updateScore } from "./api";
 import {
   averageScoreText,
   completeText,
@@ -103,10 +103,9 @@ export function showResultBox() {
   scoreText.innerText = `You got ${userScore} Points`;
   changeResultText();
 
-  var dataStr = localStorage.getItem("app-user-details");
-  if (!dataStr) return;
+  var data = getLocalStorageData();
+  if (!data) return;
 
-  var data: IUserData = JSON.parse(dataStr);
   highScoreText.innerText = String(data.highscore);
 }
 
@@ -147,7 +146,7 @@ function addZeroToSingleDigit(num: number) {
 }
 
 function changeResultText() {
-  // TODO: Adding different text for different situations
+  // TODO: Adding different text message for different situations
   completeText.innerText = `You've completed The Quiz`;
 }
 

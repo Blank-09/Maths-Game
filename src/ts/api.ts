@@ -4,9 +4,9 @@ import { userScore } from "./functions";
 
 const location = window.location.hostname;
 const apiURL =
-  "https://script.google.com/macros/s/AKfycbz8vXR3g9KmyXHVlxFcLfcJn6yEYdX96PKEyPf8vFRuhgCfqkhThgegD48Az1fpMOdncg/exec";
+  "https://script.google.com/macros/s/AKfycbzUSI74vHRuJQev7m0X2Bf5pG97hYvY3Vwroi3dpOL1OgMf1JM7F62YT06bqgrLQgoNSQ/exec";
 
-export const localStorageKey = "app-user-details";
+export const localStorageKey = "maths-quiz-v2";
 
 
 export function register(username: string) {
@@ -92,7 +92,8 @@ export async function updateScore() {
 }
 
 export async function getLeaderboardScores() {
-  const request = await fetch(apiURL);
+  const url = apiURL + "?limit=10";
+  const request = await fetch(url);
   const data: IAPIData = await request.json();
   return data.data;
 }

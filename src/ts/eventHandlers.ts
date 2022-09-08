@@ -1,4 +1,3 @@
-import { IUserData } from "@/interface/ILocalStorage";
 import { getLocalStorageData, register } from "./api";
 import {
   createQuestion,
@@ -46,7 +45,7 @@ import {
 startBtn.onclick = () => {
   start_div.classList.remove("active");
 
-  const dataObj = JSON.parse(localStorage.getItem("app-user-details")!);
+  const dataObj = getLocalStorageData();
 
   if (dataObj && dataObj.name) info_box_div.classList.add("active");
   else register_box_div.classList.add("active");
@@ -61,9 +60,7 @@ leaderboardBtn.onclick = () => {
 };
 
 userDetailsBtn.onclick = () => {
-  const dataObj: IUserData = JSON.parse(
-    localStorage.getItem("app-user-details")!
-  );
+  const dataObj = getLocalStorageData();
 
   if (!(dataObj && dataObj.name))
     return register_box_div.classList.add("active");
